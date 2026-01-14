@@ -1,0 +1,36 @@
+# FastAPI and Server
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# LangChain and LLM - Updated for Python 3.12 compatibility
+langchain>=0.1.0
+langchain-community>=0.0.21
+langchain-groq>=0.1.0
+groq>=0.4.0
+
+# Vector Database
+faiss-cpu==1.8.0
+sentence-transformers==2.3.1
+
+# Database
+sqlalchemy==2.0.25
+alembic==1.13.1
+
+# Document Processing
+PyPDF2==3.0.1
+python-docx==1.1.0
+python-magic-bin==0.4.14
+markdown==3.5.2
+
+# Web Search
+tavily-python>=0.3.0
+
+# Utilities
+python-dotenv==1.0.1
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+aiofiles==23.2.1
+
+# CORS
+python-jose[cryptography]==3.3.0
