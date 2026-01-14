@@ -20,7 +20,7 @@ alembic==1.13.1
 # Document Processing
 PyPDF2==3.0.1
 python-docx==1.1.0
-python-magic-bin==0.4.14
+python-magic>=0.4.15
 markdown==3.5.2
 
 # Web Search
