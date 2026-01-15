@@ -359,14 +359,9 @@ curl -X POST http://localhost:8000/api/chat \
 - [ ] Docker containerization
 - [ ] Integration tests and CI/CD
 
-## 📄 License
 
-MIT License - feel free to use this project for your internship assignment and beyond!
 
-## 👨‍💻 Author
 
-Built as part of the Fyora.ai Internship Assignment
 
----
 
-**Note:** This is a demonstration project showcasing modern AI application development practices. API keys should never be committed to version control. Always use environment variables in production.
+
