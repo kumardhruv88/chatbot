@@ -70,3 +70,8 @@ class RAGService:
             "context": context,
             "sources": list(sources)
         }
+    
+    async def has_documents(self, thread_id: int) -> bool:
+        """Check if any documents exist for a thread."""
+        index_path = self._get_index_path(thread_id)
+        return os.path.exists(index_path)

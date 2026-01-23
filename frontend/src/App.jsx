@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar, { SidebarStrip } from './components/Sidebar';
 import ChatInterface from './components/ChatInterface';
-import CreateThreadModal from './components/CreateThreadModal';
 import CosmicBackground from './components/CosmicBackground';
 import { threadAPI } from './services/api';
 import './index.css';
@@ -10,7 +9,6 @@ function App() {
     const [threads, setThreads] = useState([]);
     const [currentThread, setCurrentThread] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [showCreateModal, setShowCreateModal] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
     // Load threads on mount
@@ -43,12 +41,12 @@ function App() {
         }
     };
 
-    const handleCreateThread = async (title) => {
+    const handleCreateThread = async () => {
         try {
-            const response = await threadAPI.create(title);
+            // Create with default title - backend will auto-generate proper title after first message
+            const response = await threadAPI.create('New Conversation');
             setThreads(prev => [response.data, ...prev]);
             setCurrentThread(response.data);
-            setShowCreateModal(false);
         } catch (error) {
             console.error('Error creating thread:', error);
             alert('Failed to create thread');
@@ -116,7 +114,7 @@ function App() {
                             <Sidebar
                                 threads={threads}
                                 currentThread={currentThread}
-                                onCreateThread={() => setShowCreateModal(true)}
+                                onCreateThread={handleCreateThread}
                                 onSelectThread={handleSelectThread}
                                 onDeleteThread={handleDeleteThread}
                                 onClose={() => setSidebarOpen(false)}
@@ -125,7 +123,7 @@ function App() {
                             <div className="hidden lg:block h-full">
                                 <SidebarStrip
                                     onOpen={() => setSidebarOpen(true)}
-                                    onCreateThread={() => setShowCreateModal(true)}
+                                    onCreateThread={handleCreateThread}
                                 />
                             </div>
                         )}
@@ -149,13 +147,6 @@ function App() {
                         onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
                     />
                 </div>
-
-                {/* Create Thread Modal */}
-                <CreateThreadModal
-                    isOpen={showCreateModal}
-                    onClose={() => setShowCreateModal(false)}
-                    onCreate={handleCreateThread}
-                />
             </div>
         </>
     );
