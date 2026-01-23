@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Globe, Loader2, Plus, Image, FileUp, BrainCircuit, ShoppingBag, MoreHorizontal, X, Mic, MicOff } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+// Use shared API URL from api.js (reads from VITE_API_URL env var)
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '');
+const API_BASE_URL = `${API_URL}/api`;
 
 function MessageInput({ threadId, onMessageSent, onFileUpload, uploading }) {
     const [message, setMessage] = useState('');

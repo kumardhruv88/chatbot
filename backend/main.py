@@ -36,8 +36,10 @@ app = FastAPI(
 )
 
 # CORS middleware - Allow Vercel frontend URLs
+# Strip trailing slashes from frontend_url to ensure proper CORS matching
+frontend_origin = settings.frontend_url.rstrip('/') if settings.frontend_url else ""
 allowed_origins = [
-    settings.frontend_url,
+    frontend_origin,
     "http://localhost:3000",
     "http://localhost:5173",
 ]
