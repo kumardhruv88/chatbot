@@ -9,14 +9,14 @@ from ..schemas.thread import ThreadCreate, ThreadUpdate, ThreadResponse
 router = APIRouter()
 
 
-@router.get("/", response_model=List[ThreadResponse])
+@router.get("", response_model=List[ThreadResponse])
 async def list_threads(db: Session = Depends(get_db)):
     """Get all conversation threads."""
     threads = db.query(Thread).order_by(Thread.updated_at.desc()).all()
     return threads
 
 
-@router.post("/", response_model=ThreadResponse, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=ThreadResponse, status_code=status.HTTP_201_CREATED)
 async def create_thread(thread_data: ThreadCreate, db: Session = Depends(get_db)):
     """Create a new conversation thread."""
     thread = Thread(title=thread_data.title)

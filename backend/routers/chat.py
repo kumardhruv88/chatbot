@@ -14,7 +14,7 @@ from ..services.search_service import SearchService
 router = APIRouter()
 
 
-@router.post("/")
+@router.post("")
 async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     """Send a chat message and get streaming response."""
     

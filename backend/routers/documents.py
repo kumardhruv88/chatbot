@@ -93,7 +93,7 @@ async def upload_document(
     return document
 
 
-@router.get("/", response_model=List[DocumentResponse])
+@router.get("", response_model=List[DocumentResponse])
 async def list_documents(thread_id: int, db: Session = Depends(get_db)):
     """List all documents for a thread."""
     documents = db.query(Document).filter(
