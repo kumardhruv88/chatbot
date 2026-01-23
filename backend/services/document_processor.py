@@ -57,13 +57,13 @@ class DocumentProcessor:
     
     def _get_index_path(self, thread_id: int) -> str:
         """Get the path for the FAISS index file."""
-        os.makedirs(settings.chroma_persist_dir, exist_ok=True)
-        return os.path.join(settings.chroma_persist_dir, f"thread_{thread_id}.index")
+        os.makedirs(settings.faiss_persist_dir, exist_ok=True)
+        return os.path.join(settings.faiss_persist_dir, f"thread_{thread_id}.index")
     
     def _get_metadata_path(self, thread_id: int) -> str:
         """Get the path for the metadata file."""
-        os.makedirs(settings.chroma_persist_dir, exist_ok=True)
-        return os.path.join(settings.chroma_persist_dir, f"thread_{thread_id}_metadata.pkl")
+        os.makedirs(settings.faiss_persist_dir, exist_ok=True)
+        return os.path.join(settings.faiss_persist_dir, f"thread_{thread_id}_metadata.pkl")
     
     async def process_and_store(
         self, 

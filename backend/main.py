@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
     
     # Create upload directory if it doesn't exist
     os.makedirs(settings.upload_dir, exist_ok=True)
-    os.makedirs(settings.chroma_persist_dir, exist_ok=True)
+    os.makedirs(settings.faiss_persist_dir, exist_ok=True)
     
     print(f"Server starting on {settings.backend_host}:{settings.backend_port}")
     yield
@@ -35,10 +35,18 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware
+# CORS middleware - Allow Vercel frontend URLs
+allowed_origins = [
+    settings.frontend_url,
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
+
+# Add pattern matching for Vercel preview URLs
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:3000"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Allow all Vercel preview URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

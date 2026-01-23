@@ -18,11 +18,11 @@ class RAGService:
     
     def _get_index_path(self, thread_id: int) -> str:
         """Get the path for the FAISS index file."""
-        return os.path.join(settings.chroma_persist_dir, f"thread_{thread_id}.index")
+        return os.path.join(settings.faiss_persist_dir, f"thread_{thread_id}.index")
     
     def _get_metadata_path(self, thread_id: int) -> str:
         """Get the path for the metadata file."""
-        return os.path.join(settings.chroma_persist_dir, f"thread_{thread_id}_metadata.pkl")
+        return os.path.join(settings.faiss_persist_dir, f"thread_{thread_id}_metadata.pkl")
     
     async def retrieve_context(
         self, 
